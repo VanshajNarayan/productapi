@@ -1,0 +1,20 @@
+.api_div{
+  /* border: 2px solid red; */
+  max-width: 70rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.api_div .cards{
+  /* border: 2px solid blue; */
+  max-width: 15rem;
+  margin: 1rem;
+}
+
+.api_div .cards p{
+  margin-top: 0;
+  margin-bottom: 10px;
+}
