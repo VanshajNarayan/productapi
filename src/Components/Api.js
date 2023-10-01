@@ -5,6 +5,8 @@ import "./Api.css";
 const Api = () => {
 
   const [apiData, setApiData] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [value, setValue] = useState("");
 
   const ApiCalling = async () => {
     const responce = await fetch("https://api.pujakaitem.com/api/products");
@@ -16,12 +18,22 @@ const Api = () => {
     ApiCalling();
   }, [])
 
+  useEffect(() => {
+    let timeoutId = setTimeout(() => { 
+      setValue(inputValue);
+    }, 2000);
+    return () => clearTimeout(timeoutId);
+  }, [inputValue])
+
+  const filteredItems = apiData.filter((elements) => elements.company.includes(value))
+
   return (
     <>
       <h3>Api calling</h3>
+      <input type="search" value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
       <div className="api_div">
         {
-          apiData.map(Element => <ApiData key={Element.id} elements = {Element} /> )
+          filteredItems.map(Element => <ApiData key={Element.id} elements = {Element} /> )
         }
       </div>
     </>
